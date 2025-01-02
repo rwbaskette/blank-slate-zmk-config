@@ -25,7 +25,7 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
 
-            tapping-term-ms = <175>;
+            tapping-term-ms = <200>;
         };
     };
 
@@ -65,7 +65,7 @@
         right_layer {
             label = "Right";
             bindings = <
-&kp TILDE          &kp NUMBER_1  &kp NUMBER_2    &kp NUMBER_3   &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_7      &kp NUMBER_8  &kp NUMBER_9      &kp N0             &trans
+&kp GRAVE          &kp NUMBER_1  &kp NUMBER_2    &kp NUMBER_3   &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_7      &kp NUMBER_8  &kp NUMBER_9      &kp N0             &trans
 &kp DEL            &kp F1        &kp F2          &kp F3         &kp F4        &kp F5        &kp F6        &kp MINUS         &kp PLUS      &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PIPE
 &kp RIGHT_SHIFT    &kp F7        &kp F8          &kp F9         &kp F10       &kp F11       &kp F12       &trans            &trans        &kp PAGE_UP       &kp PAGE_DOWN      &trans
 &kp RIGHT_CONTROL  &trans        &kp RIGHT_META  &kp RIGHT_ALT  &mo 4         &none         &none         &kp C_PLAY_PAUSE  &kp C_VOL_UP  &kp C_VOL_DN      &trans
