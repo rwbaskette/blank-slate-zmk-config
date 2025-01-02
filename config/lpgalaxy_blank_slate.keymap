@@ -13,34 +13,21 @@
 #define NUM_L 2
 #define SYM_L 3
 
-// Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
-
-&lt { quick_tap_ms = <200>; };
-
-// #define BT(n) BT_SEL n
+#define AS(keycode) &as LS(keycode) keycode
 
 / {
     chosen { zmk,physical-layout = &layout_ortho_4x12_1x2u; };
 
-    /*
-    macros {
-      ZMK_MACRO(thumbs_up,
-		wait-ms = <1>;
-		tap-ms = <5>;
-		bindings = <&kp PLUS &kp COLON &kp PLUS &kp N1 &kp COLON &kp RET>;
-	)
+    behaviors {
+        as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping_term_ms = <135>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
     };
-    
-    tap_dances {
-    	shifty: shift_caps_word {
-			compatible = "zmk,behavior-tap-dance";
-			label = "TD_SHIFTY";
-			#binding-cells = <0>;
-			tapping-term-ms = <150>;
-			bindings = <&kp LSHFT>, <&caps_word>;
-		};
-    };
-*/
 
     keymap {
         compatible = "zmk,keymap";
@@ -48,10 +35,20 @@
         base_layer {
             label = "Base";
             bindings = <
-&kp TAB     &kp Q               &kp W     &kp E     &kp R  &kp T      &kp Y  &kp U     &kp I      &kp O     &kp P      &kp BACKSPACE
-&kp ESCAPE  &kp A               &kp S     &kp D     &kp F  &kp G      &kp H  &kp J     &kp K      &kp L     &kp SEMI   &kp SINGLE_QUOTE
-&kp LSHFT   &kp Z               &kp X     &kp C     &kp V  &kp B      &kp N  &kp M     &kp COMMA  &kp DOT   &kp FSLH   &kp RET
-&kp LCTRL   &kp K_CONTEXT_MENU  &kp LGUI  &kp LALT  &mo 1  &kp SPACE  &mo 1  &kp LEFT  &kp UP     &kp DOWN  &kp RIGHT
+&kp TAB           &kp Q               &kp W     &kp E     &kp R  &kp T      &kp Y  &kp U     &kp I      &kp O     &kp P      &kp BACKSPACE
+&as ESCAPE LCTRL  &kp A               &kp S     &kp D     &kp F  &kp G      &kp H  &kp J     &kp K      &kp L     &kp SEMI   &kp SINGLE_QUOTE
+&kp LSHFT         &kp Z               &kp X     &kp C     &kp V  &kp B      &kp N  &kp M     &kp COMMA  &kp DOT   &kp FSLH   &kp RET
+&kp LCTRL         &kp K_CONTEXT_MENU  &kp LGUI  &kp LALT  &mo 2  &kp SPACE  &mo 3  &kp LEFT  &kp UP     &kp DOWN  &kp RIGHT
+            >;
+        };
+
+        AS_layer {
+            label = "Auto-Shift";
+            bindings = <
+&kp TAB           &as LS(Q) Q         &as LS(W) W  &as LS(E) E  &as LS(R) R  &as LS(T) T  &as LS(Y) Y  &as LS(U) U  &as LS(I) I          &as LS(O) O      &as LS(P) P        &kp BACKSPACE
+&as ESCAPE LCTRL  &as LS(A) A         &as LS(S) S  &as LS(D) D  &as LS(F) F  &as LS(G) G  &as LS(H) H  &as LS(J) J  &as LS(K) K          &as LS(L) L      &kp SEMI           &kp SINGLE_QUOTE
+&kp LSHFT         &as LS(Z) Z         &as LS(X) X  &as LS(C) C  &as LS(V) V  &as LS(B) B  &as LS(N) N  &as LS(M) M  &as LS(COMMA) COMMA  &as LS(DOT) DOT  &as LS(FSLH) FSLH  &kp RET
+&kp LCTRL         &kp K_CONTEXT_MENU  &kp LGUI     &kp LALT     &mo 2        &kp SPACE    &mo 3        &kp LEFT     &kp UP               &kp DOWN         &kp RIGHT
             >;
         };
 
@@ -61,7 +58,7 @@
 &kp TILDE  &kp EXCLAMATION  &kp AT  &kp HASH  &kp DOLLAR  &kp PERCENT  &kp CARET  &kp AMPERSAND     &kp ASTERISK  &kp LPAR          &kp RPAR           &trans
 &kp DEL    &kp F1           &kp F2  &kp F3    &kp F4      &kp F5       &kp F6     &kp MINUS         &kp PLUS      &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PIPE
 &trans     &kp F7           &kp F8  &kp F9    &kp F10     &kp F11      &kp F12    &trans            &trans        &kp HOME          &kp END            &trans
-&trans     &trans           &trans  &trans    &trans      &none        &mo 3      &kp C_PLAY_PAUSE  &kp C_VOL_UP  &kp C_VOL_DN      &trans
+&trans     &trans           &trans  &trans    &trans      &none        &mo 4      &kp C_PLAY_PAUSE  &kp C_VOL_UP  &kp C_VOL_DN      &trans
             >;
         };
 
@@ -71,17 +68,17 @@
 &kp TILDE          &kp NUMBER_1  &kp NUMBER_2    &kp NUMBER_3   &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_7      &kp NUMBER_8  &kp NUMBER_9      &kp N0             &trans
 &kp DEL            &kp F1        &kp F2          &kp F3         &kp F4        &kp F5        &kp F6        &kp MINUS         &kp PLUS      &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PIPE
 &kp RIGHT_SHIFT    &kp F7        &kp F8          &kp F9         &kp F10       &kp F11       &kp F12       &trans            &trans        &kp PAGE_UP       &kp PAGE_DOWN      &trans
-&kp RIGHT_CONTROL  &trans        &kp RIGHT_META  &kp RIGHT_ALT  &mo 3         &none         &none         &kp C_PLAY_PAUSE  &kp C_VOL_UP  &kp C_VOL_DN      &trans
+&kp RIGHT_CONTROL  &trans        &kp RIGHT_META  &kp RIGHT_ALT  &mo 4         &none         &none         &kp C_PLAY_PAUSE  &kp C_VOL_UP  &kp C_VOL_DN      &trans
             >;
         };
 
         both_layer {
             label = "Both";
             bindings = <
-&bt BT_CLR         &trans            &trans             &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans  &trans
-&soft_off          &ext_power EP_TOG  &ext_power EP_ON  &ext_power EP_OFF  &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans 
-&trans             &bt BT_SEL 0      &bt BT_SEL 1       &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans  &trans  &trans  &trans  &trans  &sys_reset
-&trans             &trans            &trans             &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR  &trans             &trans            &trans             &trans        &trans        &trans  &trans  &trans  &trans  &trans  &trans
+&soft_off   &ext_power EP_TOG  &ext_power EP_ON  &ext_power EP_OFF  &trans        &trans        &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &bt BT_SEL 0       &bt BT_SEL 1      &bt BT_SEL 2       &bt BT_SEL 3  &bt BT_SEL 4  &trans  &trans  &trans  &trans  &trans  &sys_reset
+&to 0       &to 1              &trans            &trans             &trans        &trans        &trans  &trans  &trans  &trans  &trans
             >;
         };
     };
