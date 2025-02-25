@@ -36,7 +36,7 @@
         base_layer {
             label = "Base";
             bindings = <
-&as TILDE TAB            &kp Q               &kp W     &kp E     &kp R  &kp T      &kp Y  &kp U     &kp I      &kp O         &kp P      &kp BACKSPACE
+&kp TAB                  &kp Q               &kp W     &kp E     &kp R  &kp T      &kp Y  &kp U     &kp I      &kp O         &kp P      &kp BACKSPACE
 &as LEFT_CONTROL ESCAPE  &kp A               &kp S     &kp D     &kp F  &kp G      &kp H  &kp J     &kp K      &kp L         &kp SEMI   &kp SINGLE_QUOTE
 &kp LSHFT                &kp Z               &kp X     &kp C     &kp V  &kp B      &kp N  &kp M     &kp COMMA  &kp DOT       &kp FSLH   &kp RET
 &kp LCTRL                &kp K_CONTEXT_MENU  &kp LGUI  &kp LALT  &mo 2  &kp SPACE  &mo 3  &kp LEFT  &kp DOWN   &kp UP_ARROW  &kp RIGHT
@@ -46,7 +46,7 @@
         AS_layer {
             label = "Auto-Shift";
             bindings = <
-&trans                &as LS(Q) Q         &as LS(W) W  &as LS(E) E  &as LS(R) R  &as LS(T) T  &as LS(Y) Y  &as LS(U) U  &as LS(I) I          &as LS(O) O      &as LS(P) P                  &kp BACKSPACE
+&as TILDE TAB         &as LS(Q) Q         &as LS(W) W  &as LS(E) E  &as LS(R) R  &as LS(T) T  &as LS(Y) Y  &as LS(U) U  &as LS(I) I          &as LS(O) O      &as LS(P) P                  &kp BACKSPACE
 &as LEFT_CONTROL ESC  &as LS(A) A         &as LS(S) S  &as LS(D) D  &as LS(F) F  &as LS(G) G  &as LS(H) H  &as LS(J) J  &as LS(K) K          &as LS(L) L      &as LS(SEMICOLON) SEMICOLON  &as LS(SINGLE_QUOTE) SINGLE_QUOTE
 &kp LSHFT             &as LS(Z) Z         &as LS(X) X  &as LS(C) C  &as LS(V) V  &as LS(B) B  &as LS(N) N  &as LS(M) M  &as LS(COMMA) COMMA  &as LS(DOT) DOT  &as LS(FSLH) FSLH            &kp RET
 &kp LCTRL             &kp K_CONTEXT_MENU  &kp LGUI     &kp LALT     &mo 2        &kp SPACE    &mo 3        &kp LEFT     &kp DOWN             &kp UP_ARROW     &kp RIGHT
@@ -79,7 +79,7 @@
 &bt BT_CLR    &trans             &trans            &trans             &trans        &trans        &trans        &trans        &trans  &trans  &trans  &trans
 &soft_off     &ext_power EP_TOG  &ext_power EP_ON  &ext_power EP_OFF  &trans        &trans        &trans        &trans        &trans  &trans  &trans  &trans
 &out OUT_TOG  &bt BT_SEL 0       &bt BT_SEL 1      &bt BT_SEL 2       &bt BT_SEL 3  &bt BT_SEL 4  &out OUT_BLE  &out OUT_USB  &trans  &trans  &trans  &sys_reset
-&trans        &trans             &trans            &trans             &trans        &trans        &trans        &trans        &trans  &trans  &trans
+&tog 0        &tog 1             &trans            &trans             &trans        &trans        &trans        &trans        &trans  &trans  &trans
             >;
         };
 
